@@ -25,13 +25,13 @@ CLOCKWORKRT.components.push([
             },
             {
                 name: "keydown", code: function (event) {
-                    this.engine.execute_event("keyboard_down", { key: event.keyCode });
+                    this.engine.execute_event("keyboardDown", { key: event.keyCode });
 
                 }
             },
             {
                 name: "keyup", code: function (event) {
-                    this.engine.execute_event("keyboard_up", { key: event.keyCode });
+                    this.engine.execute_event("keyboardUp", { key: event.keyCode });
                 }
             }
         ]
