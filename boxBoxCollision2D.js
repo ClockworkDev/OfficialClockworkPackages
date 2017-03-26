@@ -2,7 +2,7 @@ CLOCKWORKRT.collisions.register({
     shape1: "box",
     shape2: "box",
     detector: function (b1, b2, data) {
-        if (!((b1.x + b1.w) > b2.x && (b2.x + b2.w) > b1.x && (b1.z + b1.h) > b2.z && (b2.z + b2.h) > b1.z)) {
+        if (!((b1.x + b1.w) > b2.x && (b2.x + b2.w) > b1.x && (b1.y + b1.h) > b2.y && (b2.y + b2.h) > b1.y)) {
             return false;
         } else {
             return true;
