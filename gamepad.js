@@ -1,4 +1,4 @@
-CLOCKWORKRT.components.push([
+CLOCKWORKRT.components.register([
     {
         name: "gamepad",
         events: [

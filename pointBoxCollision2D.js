@@ -1,4 +1,4 @@
-CLOCKWORKRT.collisions.push({
+CLOCKWORKRT.collisions.register({
     shape1: "point",
     shape2: "box",
     detector: function (p, b, data) {
