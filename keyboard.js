@@ -1,6 +1,7 @@
 CLOCKWORKRT.components.register([
     {
         name: "keyboard",
+        description: "This component allows you to incorporate keyboard support to your game, sending key events that other components can listen to.",
         events: [
             {
                 name: "#setup", code: function (event) {
@@ -32,6 +33,22 @@ CLOCKWORKRT.components.register([
             {
                 name: "keyup", code: function (event) {
                     this.engine.execute_event("keyboardUp", { key: event.keyCode });
+                }
+            }
+        ],
+        triggers: [
+            {
+                "name": "keyboardDown",
+                "description": "This event will be triggered once a key is pressed.",
+                "dataSchema": {
+                    "key": "<The key code>"
+                }
+            },
+            {
+                "name": "keyboardUp",
+                "description": "This event will be triggered once a key is released.",
+                "dataSchema": {
+                    "key": "<The key code>"
                 }
             }
         ]

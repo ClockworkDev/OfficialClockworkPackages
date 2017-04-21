@@ -1,6 +1,7 @@
 CLOCKWORKRT.components.register([
     {
         name: "gamepad",
+        description: "This component allows you to incorporate gamepad support to your game, translating the Gamepad API to events that other components can listen to.",
         events: [
             {
                 name: "#setup", code: function (event) {
@@ -34,7 +35,7 @@ CLOCKWORKRT.components.register([
                             var buttonLeftTrigger = pad.buttons[6]; //.value, .pressed
                             var buttonRightTrigger = pad.buttons[7];
                             that.engine.execute_event("gamepadAxis", { values: [{ x: axis1X, y: axis1Y }, { x: axis2X, y: axis2Y }], player: i });
-                            that.engine.execute_event("gamepadTrigger", { leftValue: buttonLeftTrigger, rightValue: buttonRightTrigger, player: i  });
+                            that.engine.execute_event("gamepadTrigger", { leftValue: buttonLeftTrigger, rightValue: buttonRightTrigger, player: i });
                             var buttons = that.getVar("buttons");
                             var buttonsPressed = that.getVar("buttonsPressed");
                             if (!buttonsPressed[i]) {
@@ -62,6 +63,57 @@ CLOCKWORKRT.components.register([
                             }
                         }
                     })
+                }
+            }
+        ],
+        triggers: [
+            {
+                "name": "gamepadAxis",
+                "description": "This event will be triggered once per frame for each gamepad connected, sending the state of the gamepad's thumsticks.",
+                "dataSchema": {
+                    "values": [
+                        {
+                            "x": "<X value on the first thumsbtick>",
+                            "y": "<Y value on the first thumsbtick>"
+                        },
+                        {
+                            "x": "<X value on the second thumsbtick>",
+                            "y": "<Y value on the second thumsbtick>"
+                        }
+                    ],
+                    "player":"<The number of the gamepad connected>"
+                }
+            },
+            {
+                "name": "gamepadTrigger",
+                "description": "This event will be triggered once per frame for each gamepad connected, sending the state of the gamepad's triggers.",
+                "dataSchema": {
+                    "leftValue": "<The value of the left trigger>",
+                    "rightValue": "<The value of the right trigger>",
+                    "player":"<The number of the gamepad connected>"
+                }
+            },
+            {
+                "name": "gamepadDown",
+                "description": "This event will be triggered once a gamepad button is down.",
+                "dataSchema": {
+                    "name":"<The name of the button>",
+                    "player":"<The number of the gamepad connected>"
+                }
+            },
+               {
+                "name": "gamepadUp",
+                "description": "This event will be triggered once a gamepad button is up.",
+                "dataSchema": {
+                    "name":"<The name of the button>",
+                    "player":"<The number of the gamepad connected>"
+                }
+            },
+            {
+                "name": "gamepadDisconnected",
+                "description": "This event will be triggered once a gamepad is disconnected.",
+                "dataSchema": {
+                    "player":"<The number of the gamepad disconnected>"
                 }
             }
         ]
