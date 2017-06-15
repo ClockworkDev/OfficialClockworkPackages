@@ -26,7 +26,8 @@ CLOCKWORKRT.components.register([
             {
                 name: "#loop", code: function (event) {
                     var that = this;
-                    navigator.getGamepads().forEach(function (pad, i) {
+                    for (var i = 0; i < navigator.getGamepads().length; i++) { //Chrome does not allow to use forEach on the gamepad list :(
+                        var pad = navigator.getGamepads()[i];
                         if (pad) {
                             var axis1X = pad.axes[0];
                             var axis1Y = pad.axes[1];
@@ -62,7 +63,7 @@ CLOCKWORKRT.components.register([
                                 buttonsPressed[i]["#connected"] = false;
                             }
                         }
-                    })
+                    }
                 }
             }
         ],
@@ -81,7 +82,7 @@ CLOCKWORKRT.components.register([
                             "y": "<Y value on the second thumsbtick>"
                         }
                     ],
-                    "player":"<The number of the gamepad connected>"
+                    "player": "<The number of the gamepad connected>"
                 }
             },
             {
@@ -90,30 +91,30 @@ CLOCKWORKRT.components.register([
                 "dataSchema": {
                     "leftValue": "<The value of the left trigger>",
                     "rightValue": "<The value of the right trigger>",
-                    "player":"<The number of the gamepad connected>"
+                    "player": "<The number of the gamepad connected>"
                 }
             },
             {
                 "name": "gamepadDown",
                 "description": "This event will be triggered once a gamepad button is down.",
                 "dataSchema": {
-                    "name":"<The name of the button>",
-                    "player":"<The number of the gamepad connected>"
+                    "name": "<The name of the button>",
+                    "player": "<The number of the gamepad connected>"
                 }
             },
-               {
+            {
                 "name": "gamepadUp",
                 "description": "This event will be triggered once a gamepad button is up.",
                 "dataSchema": {
-                    "name":"<The name of the button>",
-                    "player":"<The number of the gamepad connected>"
+                    "name": "<The name of the button>",
+                    "player": "<The number of the gamepad connected>"
                 }
             },
             {
                 "name": "gamepadDisconnected",
                 "description": "This event will be triggered once a gamepad is disconnected.",
                 "dataSchema": {
-                    "player":"<The number of the gamepad disconnected>"
+                    "player": "<The number of the gamepad disconnected>"
                 }
             }
         ]
