@@ -1,7 +1,7 @@
 CLOCKWORKRT.components.register([
     {
         name: "mouse",
-        description: "This component allows you to incorporate mouse support to your game, via two point collisions for the mouse hover and click.",
+        description: "This component allows you to incorporate mouse support to your game, via two point collisions for the mouse hover and click. It also generates click events.",
         events: [
             {
                 name: "#setup", code: function (event) {
@@ -23,6 +23,7 @@ CLOCKWORKRT.components.register([
             {
                 name: "onclick", code: function (e) {
                     this.var.timer = -1;
+                    this.engine.do.click({ x: this.var.$x, y: this.var.$y });
                 }
             },
             {
@@ -71,6 +72,16 @@ CLOCKWORKRT.components.register([
                 //Coordinates of the click
                 { "#tag": "click", "x": NaN, "y": NaN }
             ]
-        }
+        },
+        triggers: [
+            {
+                "name": "click",
+                "description": "This event will be triggered once the mouse is clicked",
+                "dataSchema": {
+                    "x": "<The x coordinate of the mouse>",
+                    "y": "<The y coordinate of the mouse>"
+                }
+            }
+        ]
     }
 ]);
