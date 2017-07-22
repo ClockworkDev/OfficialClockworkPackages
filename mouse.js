@@ -8,7 +8,7 @@ CLOCKWORKRT.components.register([
                     var manifest = CLOCKWORKRT.API.getManifest();
                     this.var.w = manifest.screenResolution.w;
                     this.var.h = manifest.screenResolution.h;
-                    this.var.histener_click = this.engine.var["#DOM"].addEventListener("mousedown", this.do.onclick.bind(this), false);
+                    this.var.listener_click = this.engine.var["#DOM"].addEventListener("mousedown", this.do.onclick.bind(this), false);
                     this.var.listener_move = this.engine.var["#DOM"].addEventListener("mousemove", this.do.onmove.bind(this), false);
                     this.var.listener_up = this.engine.var["#DOM"].addEventListener("mouseup", this.do.mouseup.bind(this), false);
                 }
@@ -37,7 +37,7 @@ CLOCKWORKRT.components.register([
                     var height = (this.var.h * window.innerWidth / this.var.w);
                     ty = this.var.h * (ty - ypos) / height;
 
-                    var camera = this.engine.getAnimationEngine().getCamera();
+                    var camera = this.engine.getRenderingLibrary().getCamera();
                     this.var.$x = +tx + camera.x;
                     this.var.$y = +ty + camera.y;
 
