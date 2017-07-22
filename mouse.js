@@ -8,16 +8,19 @@ CLOCKWORKRT.components.register([
                     var manifest = CLOCKWORKRT.API.getManifest();
                     this.var.w = manifest.screenResolution.w;
                     this.var.h = manifest.screenResolution.h;
-                    this.var.listener_click = this.engine.var["#DOM"].addEventListener("mousedown", this.do.onclick.bind(this), false);
-                    this.var.listener_move = this.engine.var["#DOM"].addEventListener("mousemove", this.do.onmove.bind(this), false);
-                    this.var.listener_up = this.engine.var["#DOM"].addEventListener("mouseup", this.do.mouseup.bind(this), false);
+                    this.var.listener_click = this.do.onclick.bind(this);
+                    this.engine.var["#DOM"].addEventListener("mousedown", this.var.listener_click, false);
+                    this.var.listener_move = this.do.onmove.bind(this);
+                    this.engine.var["#DOM"].addEventListener("mousemove", this.var.listener_move, false);
+                    this.var.listener_up = this.do.mouseup.bind(this);
+                    this.engine.var["#DOM"].addEventListener("mouseup", this.var.listener_up, false);
                 }
             },
             {
                 name: "#exit", code: function (event) {
-                    this.engine.var["#DOM"].removeEventListener("click", this.var.listener_click);
-                    this.engine.var["#DOM"].removeEventListener("mousemove", this.var.listener_move);
-                    this.engine.var["#DOM"].removeEventListener("mouseup", this.var.listener_up);
+                    this.engine.var["#DOM"].removeEventListener("mousedown", this.var.listener_click, false);
+                    this.engine.var["#DOM"].removeEventListener("mousemove", this.var.listener_move, false);
+                    this.engine.var["#DOM"].removeEventListener("mouseup", this.var.listener_up, false);
                 }
             },
             {
