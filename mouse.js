@@ -26,7 +26,7 @@ CLOCKWORKRT.components.register([
             {
                 name: "onclick", code: function (e) {
                     this.var.timer = -1;
-                    this.engine.do.click({ x: this.var.$x, y: this.var.$y });
+                    this.engine.do.click({ x: this.var.$x, y: this.var.$y, button: e.button });
                 }
             },
             {
@@ -82,7 +82,8 @@ CLOCKWORKRT.components.register([
                 "description": "This event will be triggered once the mouse is clicked",
                 "dataSchema": {
                     "x": "<The x coordinate of the mouse>",
-                    "y": "<The y coordinate of the mouse>"
+                    "y": "<The y coordinate of the mouse>",
+                    "button":"<Left button=0, middle button=1, right button=2>"
                 }
             }
         ]
